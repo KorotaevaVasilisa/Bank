@@ -15,47 +15,60 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.bank.Bin
 import com.example.bank.R
 
 @Composable
-fun CardOfInfo(modifier: Modifier = Modifier) {
+fun CardOfInfo(
+    bin: Bin,
+    modifier: Modifier = Modifier,
+) {
     Card(modifier = modifier.padding(8.dp)) {
         Row(modifier = modifier.fillMaxWidth()) {
             Column(modifier = modifier
                 .weight(1f)
                 .padding(8.dp)) {
+
                 Text(text = stringResource(id = R.string.bank),
                     style = TextStyle(fontWeight = FontWeight.Bold))
-                Text(text = "Jyske Bank", maxLines = 1)
-                Text(text = "www.jyskebank.dk", maxLines = 1)
-                Text(text = "+4589893300", maxLines = 1)
+
+                Text(text = bin.nameBank, maxLines = 1)
+
+                Text(text = bin.urlBank, maxLines = 1)
+
+                Text(text = bin.phoneBank, maxLines = 1)
+
                 Spacer(modifier = modifier.height(16.dp))
+
                 Text(text = stringResource(id = R.string.country),
                     style = TextStyle(fontWeight = FontWeight.Bold))
-                Text(text = "Denmark", maxLines = 1)
+
+                Text(text = bin.country, maxLines = 1)
             }
             Column(modifier = modifier
                 .weight(1f)
                 .padding(8.dp)) {
+
                 Text(text = stringResource(id = R.string.network),
                     style = TextStyle(fontWeight = FontWeight.Bold))
-                Text(text = "Visa", maxLines = 1)
+
+                Text(text = bin.scheme, maxLines = 1)
+
                 Text(text = stringResource(id = R.string.brand),
                     style = TextStyle(fontWeight = FontWeight.Bold))
-                Text(text = "Visa/Dankort", maxLines = 1)
+
+                Text(text = bin.brand, maxLines = 1)
+
                 Text(text = stringResource(id = R.string.type),
                     style = TextStyle(fontWeight = FontWeight.Bold))
-                Text(text = "debit", maxLines = 1)
+
+                Text(text = bin.type, maxLines = 1)
+
                 Text(text = stringResource(id = R.string.prepaid),
                     style = TextStyle(fontWeight = FontWeight.Bold))
-                Text(text = "No", maxLines = 1)
+
+                Text(text = bin.prepaid.toString(), maxLines = 1)
             }
         }
     }
-}
-
-@Preview
-@Composable
-fun ShowCardOfInfo() {
-    CardOfInfo()
 }

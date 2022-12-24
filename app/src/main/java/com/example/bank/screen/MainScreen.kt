@@ -13,24 +13,30 @@ import androidx.compose.material.TextFieldDefaults
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.bank.R
 
 @Composable
-fun MainScreen(modifier: Modifier = Modifier) {
-    val bin = remember { mutableStateOf(TextFieldValue("")) }
+fun MainScreen(
+    mainViewModel: MainViewModel = viewModel(),
+    modifier: Modifier = Modifier,
+) {
+    val bin = mainViewModel.bin.collectAsState()
+    val inputBin = remember { mutableStateOf("") }
+
     Column(modifier = modifier.fillMaxSize()) {
 
-        OutlinedTextField(value = bin.value,
-            onValueChange = { bin.value = it },
+        OutlinedTextField(value = inputBin.value,
+            onValueChange = { inputBin.value = it },
             singleLine = true,
             modifier = modifier
                 .fillMaxWidth()
@@ -43,15 +49,14 @@ fun MainScreen(modifier: Modifier = Modifier) {
             ),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             trailingIcon = {
-                IconButton(onClick = { /*TODO*/ }) {
+                IconButton(onClick = { mainViewModel.getBin(inputBin.value) }) {
                     Icon(imageVector = Icons.Default.Search,
                         contentDescription = stringResource(id = R.string.search),
                         tint = Color.Black)
                 }
             }
         )
-        CardOfInfo()
-
+        CardOfInfo(bin = bin.value)
     }
 }
 

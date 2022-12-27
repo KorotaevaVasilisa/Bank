@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 
 class MainViewModel : ViewModel() {
 
-    private val _bin = MutableStateFlow<Bin>(Bin("", "", true, "", "", "", "", "", ""))
+    private val _bin = MutableStateFlow<Bin>(Bin())
     val bin: StateFlow<Bin> = _bin.asStateFlow()
 
     fun getBin(bin: String) {

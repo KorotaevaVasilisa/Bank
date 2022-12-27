@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Bank</string>
+    <string name="search"> Искать </string>
+    <string name="input"> BIK банка</string>
+    <string name="bank">BANK</string>
+    <string name="brand">BRAND</string>
+    <string name="country">COUNTRY</string>
+    <string name="network">NETWORK</string>
+    <string name="type">TYPE</string>
+    <string name="prepaid">PREPAID</string>
+    <string name="bik">BIK</string>
 </resources>

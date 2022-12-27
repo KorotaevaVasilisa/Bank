@@ -2,6 +2,7 @@ package com.example.bank
 
 
 data class Bin(
+    val bin: String = "",
     val brand: String = "",
     val country: String = "",
     val prepaid: Boolean = true,

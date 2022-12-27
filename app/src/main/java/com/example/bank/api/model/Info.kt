@@ -8,29 +8,30 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class Info(
     @Json(name = "bank")
-    val bank: Bank,
+    val bank: Bank?,
     @Json(name = "brand")
-    val brand: String,
+    val brand: String?,
     @Json(name = "country")
-    val country: Country,
+    val country: Country?,
     @Json(name = "prepaid")
-    val prepaid: Boolean,
+    val prepaid: Boolean?,
     @Json(name = "scheme")
-    val scheme: String,
+    val scheme: String?,
     @Json(name = "type")
-    val type: String,
+    val type: String?,
     @Json(name = "number")
-    val number: Number
+    val number: Number?,
 ) {
-    fun toBin(): Bin = Bin(
-        brand = brand,
-        country = country.currency,
-        prepaid = prepaid,
-        scheme = scheme,
-        type = type,
-        cityBank = bank.city,
-        nameBank = bank.name,
-        phoneBank = bank.phone,
-        urlBank = bank.url
+    fun toBin(bin: String): Bin = Bin(
+        bin = bin,
+        brand = brand ?: "",
+        country = country?.currency ?: "",
+        prepaid = prepaid ?: true,
+        scheme = scheme ?: "",
+        type = type ?: "",
+        cityBank = bank?.city ?: "",
+        nameBank = bank?.name ?: "",
+        phoneBank = bank?.phone ?: "",
+        urlBank = bank?.url ?: ""
     )
 }

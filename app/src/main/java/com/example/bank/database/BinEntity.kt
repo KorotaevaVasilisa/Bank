@@ -4,7 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity
+@Entity(tableName = "bin_table")
 data class BinEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Int,

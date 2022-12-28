@@ -21,20 +21,30 @@ class MainViewModel(
     private val _bin = MutableStateFlow<BinEntity>(BinEntity())
     val bin: StateFlow<BinEntity> = _bin.asStateFlow()
 
+    private val _history = MutableStateFlow<List<BinEntity>>(emptyList())
+    val history: StateFlow<List<BinEntity>> = _history.asStateFlow()
+
+    init {
+        viewModelScope.launch {
+            _history.value = retrofitRepository.getBins()
+        }
+    }
+
     fun getBin(binInput: String) {
         viewModelScope.launch {
             try {
+                _history.value = retrofitRepository.getBins()
                 _bin.value = retrofitRepository.getBin(bin = binInput).toBin(binInput)
                 retrofitRepository.insertBin(bin.value)
 
             } catch (e: ConnectException) {
-                Log.e("RETROFIT", "ERROR 1: " + e.localizedMessage)
+                Log.e("ERROR", "ConnectException: " + e.localizedMessage)
             } catch (e: SocketException) {
-                Log.e("RETROFIT", "ERROR 2: " + e.localizedMessage)
+                Log.e("ERROR", "SocketException: " + e.localizedMessage)
             } catch (e: IOException) {
-                Log.e("RETROFIT", "ERROR 3: " + e.localizedMessage)
+                Log.e("ERROR", "IOE ERROR: " + e.localizedMessage)
             } catch (e: HttpException) {
-                Log.e("RETROFIT", "ERROR 4: " + e.localizedMessage)
+                Log.e("ERROR", "HTTP ERROR: " + e.localizedMessage)
             }
         }
     }

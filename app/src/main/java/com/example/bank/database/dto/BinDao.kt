@@ -8,9 +8,9 @@ import com.example.bank.database.BinEntity
 
 @Dao
 interface BinDao {
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertBin(info: BinEntity)
 
-    @Query("SELECT * FROM bin_table")
+    @Query("SELECT * FROM bin_table ORDER BY id DESC")
     suspend fun getAll(): List<BinEntity>
 }

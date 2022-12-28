@@ -15,12 +15,12 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.bank.Bin
 import com.example.bank.R
+import com.example.bank.database.BinEntity
 
 @Composable
 fun CardOfInfo(
-    bin: Bin,
+    bin: BinEntity,
     modifier: Modifier = Modifier,
 ) {
     Card(modifier = modifier.padding(8.dp)) {
@@ -28,7 +28,8 @@ fun CardOfInfo(
             Column(modifier = modifier
                 .weight(1f)
                 .padding(8.dp)) {
-
+                Text(text = stringResource(id = R.string.bin) + ": " + bin.bin,
+                    style = TextStyle(fontWeight = FontWeight.Bold))
                 Text(text = stringResource(id = R.string.bank),
                     style = TextStyle(fontWeight = FontWeight.Bold))
 
@@ -71,4 +72,10 @@ fun CardOfInfo(
             }
         }
     }
+}
+
+@Preview
+@Composable
+fun Show() {
+    CardOfInfo(BinEntity())
 }

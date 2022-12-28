@@ -7,25 +7,25 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "bin_table")
 data class BinEntity(
     @PrimaryKey(autoGenerate = true)
-    val id: Int,
+    val id: Int =0,
     @ColumnInfo(name = "bin")
-    val bin: String,
+    val bin: String = "",
     @ColumnInfo(name = "brand")
-    val brand: String,
+    val brand: String = "",
     @ColumnInfo(name = "country")
-    val country: String,
+    val country: String = "",
     @ColumnInfo(name = "prepaid")
     val prepaid: Boolean = true,
     @ColumnInfo(name = "scheme")
-    val scheme: String,
+    val scheme: String = "",
     @ColumnInfo(name = "type")
-    val type: String,
+    val type: String = "",
     @ColumnInfo(name = "city_bank")
-    val cityBank: String,
+    val cityBank: String = "",
     @ColumnInfo(name = "name_bank")
-    val nameBank: String,
+    val nameBank: String = "",
     @ColumnInfo(name = "phone_bank")
-    val phoneBank: String,
+    val phoneBank: String = "",
     @ColumnInfo(name = "url_bank")
-    val urlBank: String,
+    val urlBank: String = "",
 )

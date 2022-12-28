@@ -1,7 +1,7 @@
 package com.example.bank.api.model
 
 
-import com.example.bank.Bin
+import com.example.bank.database.BinEntity
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -22,7 +22,7 @@ data class Info(
     @Json(name = "number")
     val number: Number?,
 ) {
-    fun toBin(bin: String): Bin = Bin(
+    fun toBin(bin: String): BinEntity = BinEntity(
         bin = bin,
         brand = brand ?: "",
         country = country?.currency ?: "",

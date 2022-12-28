@@ -52,7 +52,7 @@ fun MainScreen(
             label = { Text(text = stringResource(id = R.string.bin)) },
             placeholder = { Text(text = stringResource(id = R.string.search)) },
             colors = TextFieldDefaults.outlinedTextFieldColors(
-                focusedBorderColor = Color.Green, // цвет при получении фокуса
+                focusedBorderColor = Color.DarkGray, // цвет при получении фокуса
                 unfocusedBorderColor = Color.LightGray  // цвет при отсутствии фокуса
             ),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
